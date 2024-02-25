@@ -1,0 +1,6 @@
+26/12/2023 20:47:20 : SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée
+26/12/2023 20:47:24 : SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée
+05/01/2024 16:30:16 : SQLSTATE[HY000]: General error: 1007 Ne peut créer la base 'grottereptilebdd'; elle existe déjà
+05/01/2024 16:30:16 : SQLSTATE[42S01]: Base table or view already exists: 1050 La table 'users' existe déjà
+24/01/2024 11:40:49 : SQLSTATE[HY000]: General error: 1007 Ne peut cr�er la base 'grottereptilebdd'; elle existe d�j�
+24/01/2024 11:40:49 : SQLSTATE[42S01]: Base table or view already exists: 1050 La table 'users' existe d�j�
