@@ -7,7 +7,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="JDR,personnage,jeu,d&d,accueil">
+    <meta name="keywords" content="JDR,jeu,d&d,accueil">
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Accueil grotte&reptile</title>
 </head>
