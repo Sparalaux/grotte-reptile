@@ -30,7 +30,6 @@ if (!empty($_POST["envoie"])) {
     }
 }
 
-$_SESSION["personnage"] = "none";
 ?>
 <!DOCTYPE html>
 <html lang="en">

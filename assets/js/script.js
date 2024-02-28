@@ -1,8 +1,15 @@
-const button = document.getElementById('commencez');
-button.addEventListener('click', test);
-
-function test(){
-    var sessionValue = '<%=$_SESSION["personnage"]%>';
-    const aventure = document.getElementById("jeu")
-    aventure.innerHTML = "<p>test</p>";
+function dicethrow(){
+    alert("resultat: "+Math.floor(Math.random() * (21-1)+1));
 }
+
+const links = document.querySelectorAll("nav li");
+
+icons.addEventListener("click", () => {
+  nav.classList.toggle("active");
+});
+
+links.forEach((link) => {
+  link.addEventListener("click", () => {
+    nav.classList.remove("active");
+  });
+});
