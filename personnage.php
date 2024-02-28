@@ -20,6 +20,7 @@ if (!empty($_POST["envoie2"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="personnage,statistique,JDR,RPG">
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Personnage</title>
 </head>
