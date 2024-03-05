@@ -1,5 +1,6 @@
 <?php
 session_start();
+$_SESSION['personnage'] = "none";
 ?>
 <!DOCTYPE html>
 <html lang="en">

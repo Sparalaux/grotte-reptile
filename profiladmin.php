@@ -3,25 +3,26 @@ session_start();
 if (!isset($_SESSION["mail"])) {
     header("Location: ./connexion.php");
 }
-if ($_SESSION["userrole"] != "joueur") {
-    header("Location: ./profiladmin.php");
+if ($_SESSION["userrole"] != "admin") {
+    header("Location: ./profil.php");
 }
 
-if (!empty($_POST["envoie"])) {
-    $_SESSION["personnage"] = $_POST["persochoix"];
-    $personnage = $_SESSION["personnage"];
-    header("Location: ./personnage.php?='$personnage'");
-}
 
 if (!empty($_POST["envoie2"])) {
     include  "./assets/include/connexionbdd.php";
-    $personnage = $_POST["persochoix"];
-    $sql = "DELETE FROM `personnages` WHERE `personnages`.`nompersonnage` = :personnage ";
+    $iduser = $_POST["idchoix"];
+
+    $sql = "DELETE FROM `personnages` WHERE `iduser` = :iduser ";
     $suppresion = $connexion->prepare($sql);
-    $suppresion->bindParam(":personnage", $personnage, PDO::PARAM_STR);
+    $suppresion->bindParam(":iduser", $iduser, PDO::PARAM_STR);
     $suppresion->execute();
-    $_SESSION['personnage'] = "none";
-    header("Location: ./profil.php");
+
+    $sql = "DELETE FROM `users` WHERE `iduser` = :iduser ";
+    $suppresion = $connexion->prepare($sql);
+    $suppresion->bindParam(":iduser", $iduser, PDO::PARAM_STR);
+    $suppresion->execute();
+
+    header("Location: ./profiladmin.php");
 }
 ?>
 <!DOCTYPE html>
@@ -42,7 +43,7 @@ if (!empty($_POST["envoie2"])) {
 
     <main>
         <div class="banniere">
-            <h1>PROFIL</h1>
+            <h1>PROFIL ADMIN</h1>
             <div class="profil">
                 <div class="gauche">
                     <?php
@@ -55,27 +56,29 @@ if (!empty($_POST["envoie2"])) {
                     <?php
                     include  "./assets/include/connexionbdd.php";
                     include "./assets/include/fonction.php";
-                    echo "<h2>Liste de personnages :</h2>";
+                    echo "<h2>Liste de joueur :</h2>";
                     $id = $_SESSION["id"];
-                    $sql = "SELECT nompersonnage FROM personnages where iduser = '$id'";
+                    $sql = "SELECT iduser,nom,prenom FROM users where userrole = 'joueur'";
                     echo "<div>";
-                    foreach ($connexion->query($sql) as $personnage) {
-                        foreach ($personnage as $cle => $valeur) {
-                            echo "<p>" . $valeur . "</p>";
+                    echo "<table>";
+                    echo "<tr><td>IDUSER</td><td>NOM</td><td>PRENOM</td></tr>";
+                    foreach ($connexion->query($sql) as $user) {
+                        echo "<tr>";
+                        foreach ($user as $cle => $valeur) {
+                            echo "<td> $valeur </td>";
                         }
+                        echo "</tr>";
                     }
+                    echo "</table>";
                     echo "</div>";
                     echo "<form action='' method='POST'>";
-                    echo "<select name='persochoix'>";
-                    echo "<option value='none'>-personnage-</option>";
-                    foreach ($connexion->query($sql) as $personnage) {
-                        foreach ($personnage as $cle => $valeur) {
-                            echo "<option value='$valeur'>" . $valeur . "</option>";
-                        }
+                    echo "<select name='idchoix'>";
+                    echo "<option value='none'>-utilisateur-</option>";
+                    foreach ($connexion->query($sql) as $user) {
+                        echo "<option value='" . $user["iduser"] . "'>" . $user["iduser"] . "</option>";
                     }
                     echo "</select><br>";
-                    echo "<input type='submit' value='voir personnage' class='btn' name='envoie'>";
-                    echo "<input style='width:300px' type='submit' value='supprimer personnage' class='btn' name='envoie2'>";
+                    echo "<input style='width:300px' type='submit' value='supprimer joueur' class='btn' name='envoie2'>";
                     echo "</form>";
                     ?>
                 </div>

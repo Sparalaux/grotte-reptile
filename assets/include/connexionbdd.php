@@ -39,7 +39,8 @@ try {
         prenom VARCHAR(50) NOT NULL,
         nom VARCHAR(50) NOT NULL,
         email VARCHAR(50) NOT NULL,
-        mdp VARCHAR(100) NOT NULL
+        mdp VARCHAR(100) NOT NULL,
+        userrole VARCHAR(50) NOT NULL
     )CHARACTER SET utf8 COLLATE utf8_bin";
     //on execute la requete sql
     $connexion->exec($sql);

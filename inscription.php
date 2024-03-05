@@ -16,13 +16,15 @@ if (!empty($_POST["envoie"])) {
         $prenom = secu($_POST["prenom"]);
         $nom = secu($_POST["nom"]);
         $mdp = password_hash($_POST["mdp1"], PASSWORD_DEFAULT);
+        $userrole = "joueur";
 
-        $sql = "INSERT INTO users(prenom, nom, email, mdp) VALUES (:prenom,:nom, :email, :mdp)";
+        $sql = "INSERT INTO users(prenom, nom, email, mdp, userrole) VALUES (:prenom,:nom, :email, :mdp, :userrole)";
         $insertion = $connexion->prepare($sql);
         $insertion->bindParam(":prenom", $prenom, PDO::PARAM_STR);
         $insertion->bindParam(":nom", $nom, PDO::PARAM_STR);
         $insertion->bindParam(":email", $mail, PDO::PARAM_STR);
         $insertion->bindParam(":mdp", $mdp, PDO::PARAM_STR);
+        $insertion->bindParam(":userrole", $userrole, PDO::PARAM_STR);
 
         $insertion->execute();
         header("Location: ./connexion.php");
@@ -43,9 +45,9 @@ if (!empty($_POST["envoie"])) {
 
 <body>
     <main class="insCon">
-    <div class="inscription">
-        <form action="" method="POST">
-                <input name="mail" type="email" placeholder="Email" ><br>
+        <div class="inscription">
+            <form action="" method="POST">
+                <input name="mail" type="email" placeholder="Email"><br>
                 <?php
                 if (!empty($_POST["envoie"]) && ($validemail != 1)) {
                     echo "<span style= 'color: red'> l'adresse mail saisie est incorrecte.</span><br>";
@@ -54,20 +56,20 @@ if (!empty($_POST["envoie"])) {
                     echo "<span style= 'color: red'> l'adresse mail saisie est déjà utilisée par un autre utilisateur.</span><br>";
                 }
                 ?>
-                <input name="nom" type="text" placeholder="Nom" ><br>
+                <input name="nom" type="text" placeholder="Nom"><br>
                 <?php
                 if (!empty($_POST["envoie"]) && ($validenom != 1)) {
                     echo "<span style= 'color: red'> le nom e doit contenir que des lettres</span><br>";
                 }
                 ?>
-                <input name="prenom" type="text" placeholder="Prenom" ><br>
+                <input name="prenom" type="text" placeholder="Prenom"><br>
                 <?php
                 if (!empty($_POST["envoie"]) && ($valideprenom != 1)) {
                     echo "<span style= 'color: red'> le prénom e doit contenir que des lettres</span><br>";
                 }
                 ?>
-                <input name="mdp1" type="password" placeholder="Mot de passe" ><br>
-                <input name="mdp2" type="password" placeholder="verification mot de passe" ><br>
+                <input name="mdp1" type="password" placeholder="Mot de passe"><br>
+                <input name="mdp2" type="password" placeholder="verification mot de passe"><br>
                 <?php
                 if (!empty($_POST["envoie"]) && ($validemdp != 1)) {
                     echo "<span style= 'color: red'> le mot de passe doit : <br>
@@ -82,14 +84,14 @@ if (!empty($_POST["envoie"])) {
                 }
                 ?>
                 <input type="submit" value="Je m'inscris" name="envoie" class="btn"><br>
-                
 
-            
-        </form>
-        <div>
-            <a href="./connexion.php"><button class="btn">deja inscrit</button></a>
+
+
+            </form>
+            <div>
+                <a href="./connexion.php"><button class="btn">deja inscrit</button></a>
+            </div>
         </div>
-    </div>
     </main>
 
 </body>

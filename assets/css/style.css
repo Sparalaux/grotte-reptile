@@ -348,6 +348,18 @@ footer p {
     font-size: 20px;
 }
 
+.profil .droite table {
+    margin-left: 50%;
+    transform: translateX(-50%);
+    border: 2px solid black;
+    margin-bottom: 10px;
+}
+
+.profil .droite table tr td {
+    border: 2px solid black;
+    padding: 5px;
+}
+
 /*------------------------------------------Creation------------------------------------------*/
 
 .creation {
@@ -446,11 +458,12 @@ footer p {
     margin-left: 50%;
     transform: translateX(-50%);
     background-color: rgba(255, 255, 255, 0.6);
-    height: 600px;
+    height: fit-content;
     margin-bottom: 10%;
     padding-top: 50px;
     padding-bottom: 50px;
     text-align: center;
+    margin-bottom: 450px;
 }
 
 .aventure h2 {
@@ -479,14 +492,17 @@ footer p {
     /*Menu*/
     #icons {
         display: block;
-      }
-      #icons:before {
+    }
+
+    #icons:before {
         content: "\2630";
-      }
-      .active #icons:before {
+    }
+
+    .active #icons:before {
         content: "\2715";
-      }
-      nav ul {
+    }
+
+    nav ul {
         position: fixed;
         left: -100%;
         top: 5%;
@@ -494,14 +510,17 @@ footer p {
         width: 100%;
         text-align: center;
         transition: 0.25s;
-      }
-      nav li {
+    }
+
+    nav li {
         padding: 3px 0;
-      }
-      nav.active ul {
+    }
+
+    nav.active ul {
         left: 0;
-      }
-    .menu{
+    }
+
+    .menu {
         height: fit-content;
         padding-top: 10px;
         padding-bottom: 10px;
@@ -763,6 +782,7 @@ footer p {
         margin-left: 50%;
         margin-bottom: 220px;
     }
+
     /*Footer*/
     #dice {
         position: fixed;
@@ -772,11 +792,11 @@ footer p {
         border-radius: 50px;
         z-index: 10;
     }
-    
+
     #dice:hover {
         cursor: pointer;
     }
-    
+
     #dice img {
         width: 50px;
     }

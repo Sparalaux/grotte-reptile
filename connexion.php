@@ -20,6 +20,7 @@ if (!empty($_POST["envoie"])) {
             $_SESSION["prenom"] = $user["prenom"];
             $_SESSION["nom"] = $user["nom"];
             $_SESSION["mail"] = $user["email"];
+            $_SESSION["userrole"] = $user["userrole"];
             header("Location: ./profil.php");
         } else {
             $validemdp = 0;
@@ -60,11 +61,11 @@ if (!empty($_POST["envoie"])) {
                 ?>
                 <input name="mdp1" type="password" placeholder="Mot de passe"><br>
                 <input name="envoie" value="connexion" type="submit" class="btn"><br>
-        </form>
-        <div>
-            <a href="./inscription.php"><button class="btn">pas inscrit</button></a>
-        </div>   
-    </div>     
+            </form>
+            <div>
+                <a href="./inscription.php"><button class="btn">pas inscrit</button></a>
+            </div>
+        </div>
     </main>
 
 </body>

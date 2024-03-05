@@ -26,9 +26,7 @@ if (!empty($_POST["commencer"])) {
     ?>
 
     <main>
-        <div class="banniere">
-            <h1>AVENTURE</h1>
-        </div>
+
         <div class="aventure">
             <h2>Choississez un personnage</h2>
             <form action="" method="POST">

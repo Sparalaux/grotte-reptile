@@ -11,6 +11,7 @@ if (!empty($_POST["envoie2"])) {
     $suppresion = $connexion->prepare($sql);
     $suppresion->bindParam(":personnage", $personnage, PDO::PARAM_STR);
     $suppresion->execute();
+    $_SESSION['personnage'] = "none";
     header("Location: ./profil.php");
 }
 ?>
