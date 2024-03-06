@@ -80,6 +80,29 @@ if (!empty($_POST["envoie2"])) {
                     echo "</select><br>";
                     echo "<input style='width:300px' type='submit' value='supprimer joueur' class='btn' name='envoie2'>";
                     echo "</form>";
+
+                    echo "<h2>Liste de personnages :</h2>";
+                    $id = $_SESSION["id"];
+                    $sql = "SELECT nompersonnage FROM personnages where iduser = '$id'";
+                    echo "<div>";
+                    foreach ($connexion->query($sql) as $personnage) {
+                        foreach ($personnage as $cle => $valeur) {
+                            echo "<p>" . $valeur . "</p>";
+                        }
+                    }
+                    echo "</div>";
+                    echo "<form action='' method='POST'>";
+                    echo "<select name='persochoix'>";
+                    echo "<option value='none'>-personnage-</option>";
+                    foreach ($connexion->query($sql) as $personnage) {
+                        foreach ($personnage as $cle => $valeur) {
+                            echo "<option value='$valeur'>" . $valeur . "</option>";
+                        }
+                    }
+                    echo "</select><br>";
+                    echo "<input type='submit' value='voir personnage' class='btn' name='envoie'>";
+                    echo "<input style='width:300px' type='submit' value='supprimer personnage' class='btn' name='envoie2'>";
+                    echo "</form>";
                     ?>
                 </div>
             </div>

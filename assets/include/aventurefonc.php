@@ -325,7 +325,7 @@ if (!empty($_POST['event'])) {
                 break;
             case 3:
                 $_SESSION["round"] += 1;
-                $aleagros = rand(1, 10);
+                $aleagros = rand(1, 6);
                 $_SESSION["pvmonstregros"] = 50;
                 aleamonstregros($aleagros);
                 combat_gros($_SESSION["pvj"], $_SESSION["pvmonstregros"]);
@@ -383,7 +383,7 @@ if (!empty($_POST['continue'])) {
                 break;
             case 3:
                 $_SESSION["round"] += 1;
-                $aleagros = rand(1, 10);
+                $aleagros = rand(1, 6);
                 $_SESSION["pvmonstregros"] = 50;
                 aleamonstregros($aleagros);
                 combat_gros($_SESSION["pvj"], $_SESSION["pvmonstregros"]);
