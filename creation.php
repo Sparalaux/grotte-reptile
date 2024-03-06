@@ -4,9 +4,10 @@ if (!isset($_SESSION["mail"])) {
     header("Location: ./connexion.php");
 }
 
+// si le formulaire est remplie 
 if (!empty($_POST["envoie"])) {
     include_once "./assets/include/fonction.php";
-    $genre = secu($_POST["Genre"]);
+    //recuperation des stats du personnage et securisation
     $force = secu($_POST["for"]);
     $agilite = secu($_POST["agi"]);
     $intelligence = secu($_POST["intel"]);
@@ -14,21 +15,19 @@ if (!empty($_POST["envoie"])) {
     $constitution = secu($_POST["cons"]);
     $sagesse = secu($_POST["sag"]);
     $somme = $force + $agilite + $intelligence + $charisme + $constitution + $sagesse;
+    //si l'utilisateur met plus de 10 point de stats le personnage ne sera pas crée (resultat: else)
     if (($somme <= 40)) {
         include_once "./assets/include/connexionbdd.php";
+        //seccurisation des informations du personnage
         $nompersonnage = secu($_POST["nompersonnage"]);
         $race = secu($_POST["Race"]);
         $classe = secu($_POST["Classe"]);
         $genre = secu($_POST["Genre"]);
-        $force = secu($_POST["for"]);
-        $agilite = secu($_POST["agi"]);
-        $intelligence = secu($_POST["intel"]);
-        $charisme = secu($_POST["char"]);
-        $constitution = secu($_POST["cons"]);
-        $sagesse = secu($_POST["sag"]);
         $iduser = $_SESSION["id"];
+        //debut de la requete SQL
         $sql = "INSERT INTO personnages(nompersonnage, race, classe, genre, strength, agility, intelligence, constitution, charisma, wisdom, iduser) 
         VALUES (:nompersonnage, :race, :classe, :genre, :strength, :agility, :intelligence, :constitution, :charisma, :wisdom, :iduser)";
+        //insertion des variable initialiser plus tot
         $insertion = $connexion->prepare($sql);
         $insertion->bindParam(":nompersonnage", $nompersonnage, PDO::PARAM_STR);
         $insertion->bindParam(":race", $race, PDO::PARAM_STR);
@@ -41,7 +40,7 @@ if (!empty($_POST["envoie"])) {
         $insertion->bindParam(":charisma", $charisme, PDO::PARAM_INT);
         $insertion->bindParam(":wisdom", $sagesse, PDO::PARAM_INT);
         $insertion->bindParam(":iduser", $iduser, PDO::PARAM_INT);
-
+        //execution de la requete SQL
         $insertion->execute();
         header("Location: ./profil.php");
     } else {
